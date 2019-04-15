@@ -20,7 +20,9 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
 
-public class CustomTextView extends TextView {
+import androidx.appcompat.widget.AppCompatTextView;
+
+public class CustomTextView extends AppCompatTextView {
 
     private String txt;
 

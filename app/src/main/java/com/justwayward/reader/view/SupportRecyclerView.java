@@ -16,11 +16,13 @@
 package com.justwayward.reader.view;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.justwayward.reader.utils.LogUtils;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
@@ -64,6 +66,7 @@ public class SupportRecyclerView extends RecyclerView {
         super(context, attrs, defStyle);
     }
 
+    @Override
     public void setAdapter(Adapter adapter) {
         Adapter oldAdapter = getAdapter();
         if (oldAdapter != null && emptyObserver != null) {

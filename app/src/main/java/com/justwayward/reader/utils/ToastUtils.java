@@ -35,7 +35,7 @@ public class ToastUtils {
     }
 
     public static void showSingleToast(String text) {
-        getSingleToast(text, Toast.LENGTH_SHORT).show();
+        //getSingleToast(text, Toast.LENGTH_SHORT).show();
     }
 
     public static void showSingleLongToast(int resId) {
@@ -71,7 +71,7 @@ public class ToastUtils {
         if (mToast == null) {
             mToast = Toast.makeText(context, text, duration);
         } else {
-            mToast.setText(text);
+           // mToast.setText(text);
         }
         return mToast;
     }

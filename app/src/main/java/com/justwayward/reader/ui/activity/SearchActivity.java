@@ -17,9 +17,6 @@ package com.justwayward.reader.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,7 +51,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -69,19 +69,19 @@ public class SearchActivity extends BaseRVActivity<SearchDetail.SearchBooks> imp
                 .putExtra(INTENT_QUERY, query));
     }
 
-    @Bind(R.id.tvChangeWords)
+    @BindView(R.id.tvChangeWords)
     TextView mTvChangeWords;
-    @Bind(R.id.tag_group)
+    @BindView(R.id.tag_group)
     TagGroup mTagGroup;
-    @Bind(R.id.rootLayout)
+    @BindView(R.id.rootLayout)
     LinearLayout mRootLayout;
-    @Bind(R.id.layoutHotWord)
+    @BindView(R.id.layoutHotWord)
     RelativeLayout mLayoutHotWord;
-    @Bind(R.id.rlHistory)
+    @BindView(R.id.rlHistory)
     RelativeLayout rlHistory;
-    @Bind(R.id.tvClear)
+    @BindView(R.id.tvClear)
     TextView tvClear;
-    @Bind(R.id.lvSearchHistory)
+    @BindView(R.id.lvSearchHistory)
     ListView lvSearchHistory;
 
     @Inject
@@ -243,8 +243,9 @@ public class SearchActivity extends BaseRVActivity<SearchDetail.SearchBooks> imp
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (TextUtils.isEmpty(newText)) {
-                    if (mListPopupWindow.isShowing())
+                    if (mListPopupWindow.isShowing()) {
                         mListPopupWindow.dismiss();
+                    }
                     initTagGroup();
                 } else {
                     mPresenter.getAutoCompleteList(newText);
@@ -327,15 +328,17 @@ public class SearchActivity extends BaseRVActivity<SearchDetail.SearchBooks> imp
     private void initSearchResult() {
         gone(mTagGroup, mLayoutHotWord, rlHistory);
         visible(mRecyclerView);
-        if (mListPopupWindow.isShowing())
+        if (mListPopupWindow.isShowing()) {
             mListPopupWindow.dismiss();
+        }
     }
 
     private void initTagGroup() {
         visible(mTagGroup, mLayoutHotWord, rlHistory);
         gone(mRecyclerView);
-        if (mListPopupWindow.isShowing())
+        if (mListPopupWindow.isShowing()) {
             mListPopupWindow.dismiss();
+        }
     }
 
     @Override

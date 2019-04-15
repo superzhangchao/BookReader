@@ -17,11 +17,6 @@ package com.justwayward.reader.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,18 +47,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
 
 public class SubjectBookListActivity extends BaseActivity implements SubjectBookListContract.View, OnRvItemClickListener<String> {
 
-    @Bind(R.id.indicatorSubject)
+    @BindView(R.id.indicatorSubject)
     RVPIndicator mIndicator;
-    @Bind(R.id.viewpagerSubject)
+    @BindView(R.id.viewpagerSubject)
     ViewPager mViewPager;
-    @Bind(R.id.rsvTags)
+    @BindView(R.id.rsvTags)
     ReboundScrollView rsvTags;
 
-    @Bind(R.id.rvTags)
+    @BindView(R.id.rvTags)
     RecyclerView rvTags;
     private SubjectTagsAdapter mTagAdapter;
     private List<BookListTags.DataBean> mTagList = new ArrayList<>();

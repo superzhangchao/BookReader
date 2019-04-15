@@ -21,10 +21,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +34,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yuyh.easyadapter.glide.GlideCircleTransform;
 import com.yuyh.easyadapter.glide.GlideRoundTransform;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * M为这个itemView对应的model。

@@ -20,7 +20,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.SwitchCompat;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -34,7 +33,8 @@ import com.justwayward.reader.manager.EventManager;
 import com.justwayward.reader.manager.SettingManager;
 import com.justwayward.reader.utils.SharedPreferencesUtil;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.SwitchCompat;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -46,13 +46,13 @@ public class SettingActivity extends BaseActivity {
         context.startActivity(new Intent(context, SettingActivity.class));
     }
 
-    @Bind(R.id.mTvSort)
+    @BindView(R.id.mTvSort)
     TextView mTvSort;
-    @Bind(R.id.tvFlipStyle)
+    @BindView(R.id.tvFlipStyle)
     TextView mTvFlipStyle;
-    @Bind(R.id.tvCacheSize)
+    @BindView(R.id.tvCacheSize)
     TextView mTvCacheSize;
-    @Bind(R.id.noneCoverCompat)
+    @BindView(R.id.noneCoverCompat)
     SwitchCompat noneCoverCompat;
 
 

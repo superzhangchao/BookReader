@@ -17,8 +17,6 @@ package com.justwayward.reader.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +47,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -84,21 +84,21 @@ public class BookHelpDetailActivity extends BaseRVActivity<CommentList.CommentsB
     }
 
     static class HeaderViewHolder {
-        @Bind(R.id.ivBookCover)
+        @BindView(R.id.ivBookCover)
         ImageView ivAvatar;
-        @Bind(R.id.tvBookTitle)
+        @BindView(R.id.tvBookTitle)
         TextView tvNickName;
-        @Bind(R.id.tvTime)
+        @BindView(R.id.tvTime)
         TextView tvTime;
-        @Bind(R.id.tvTitle)
+        @BindView(R.id.tvTitle)
         TextView tvTitle;
-        @Bind(R.id.tvContent)
+        @BindView(R.id.tvContent)
         BookContentTextView tvContent;
-        @Bind(R.id.tvBestComments)
+        @BindView(R.id.tvBestComments)
         TextView tvBestComments;
-        @Bind(R.id.rvBestComments)
+        @BindView(R.id.rvBestComments)
         RecyclerView rvBestComments;
-        @Bind(R.id.tvCommentCount)
+        @BindView(R.id.tvCommentCount)
         TextView tvCommentCount;
 
         public HeaderViewHolder(View view) {

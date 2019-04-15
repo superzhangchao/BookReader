@@ -16,7 +16,6 @@
 package com.justwayward.reader.ui.activity;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 
 import com.justwayward.reader.R;
 import com.justwayward.reader.base.BaseRVActivity;
@@ -27,6 +26,8 @@ import com.justwayward.reader.ui.easyadapter.SubjectBookListAdapter;
 import com.justwayward.reader.view.recyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * 我的书单

@@ -17,7 +17,6 @@ package com.justwayward.reader;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.v7.app.AppCompatDelegate;
 
 import com.justwayward.reader.base.Constant;
 import com.justwayward.reader.base.CrashHandler;
@@ -34,6 +33,8 @@ import com.sinovoice.hcicloudsdk.common.HciErrorCode;
 import com.sinovoice.hcicloudsdk.common.InitParam;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 /**
  * @author yuyh.

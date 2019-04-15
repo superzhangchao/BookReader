@@ -16,7 +16,7 @@
 package com.justwayward.reader.base;
 
 import android.graphics.Color;
-import android.support.annotation.StringDef;
+
 
 import com.justwayward.reader.utils.AppUtils;
 import com.justwayward.reader.utils.FileUtils;
@@ -28,6 +28,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import androidx.annotation.StringDef;
 
 /**
  * @author yuyh.

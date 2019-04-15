@@ -21,7 +21,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -45,6 +44,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+
+import androidx.core.content.ContextCompat;
 
 public class PageFactory {
     private Context mContext;
@@ -177,8 +178,9 @@ public class PageFactory {
     public int openBook(int chapter, int[] position) {
         this.currentChapter = chapter;
         this.chapterSize = chaptersList.size();
-        if (currentChapter > chapterSize)
+        if (currentChapter > chapterSize) {
             currentChapter = chapterSize;
+        }
         String path = getBookFile(currentChapter).getPath();
         try {
             File file = new File(path);
@@ -598,18 +600,21 @@ public class PageFactory {
     }
 
     private void onChapterChanged(int chapter) {
-        if (listener != null)
+        if (listener != null) {
             listener.onChapterChanged(chapter);
+        }
     }
 
     private void onPageChanged(int chapter, int page) {
-        if (listener != null)
+        if (listener != null) {
             listener.onPageChanged(chapter, page);
+        }
     }
 
     private void onLoadChapterFailure(int chapter) {
-        if (listener != null)
+        if (listener != null) {
             listener.onLoadChapterFailure(chapter);
+        }
     }
 
     public void convertBetteryBitmap() {

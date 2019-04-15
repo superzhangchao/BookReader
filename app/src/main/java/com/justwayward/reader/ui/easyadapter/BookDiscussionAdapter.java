@@ -17,7 +17,6 @@ package com.justwayward.reader.ui.easyadapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,6 +30,8 @@ import com.justwayward.reader.utils.FormatUtils;
 import com.justwayward.reader.utils.ScreenUtils;
 import com.justwayward.reader.view.recyclerview.adapter.BaseViewHolder;
 import com.justwayward.reader.view.recyclerview.adapter.RecyclerArrayAdapter;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * @author lfh.

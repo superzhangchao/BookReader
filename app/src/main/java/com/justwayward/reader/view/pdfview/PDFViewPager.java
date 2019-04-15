@@ -16,9 +16,11 @@
 package com.justwayward.reader.view.pdfview;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 public class PDFViewPager extends ViewPager {
 

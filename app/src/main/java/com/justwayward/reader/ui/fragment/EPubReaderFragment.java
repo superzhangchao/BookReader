@@ -3,8 +3,6 @@ package com.justwayward.reader.ui.fragment;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,9 @@ import com.justwayward.reader.ui.activity.ReadEPubActivity;
 import com.justwayward.reader.view.epubview.ObservableWebView;
 import com.justwayward.reader.view.epubview.VerticalSeekbar;
 
-import butterknife.Bind;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import nl.siegmann.epublib.domain.Book;
 
 /**
@@ -33,9 +33,9 @@ public class EPubReaderFragment extends BaseFragment {
     private static final String BUNDLE_EPUB_FILE_NAME = "filename";
     private static final String BUNDLE_IS_SMIL_AVAILABLE = "smilavailable";
 
-    @Bind(R.id.scrollSeekbar)
+    @BindView(R.id.scrollSeekbar)
     VerticalSeekbar mScrollSeekbar;
-    @Bind(R.id.contentWebView)
+    @BindView(R.id.contentWebView)
     ObservableWebView mWebview;
 
     private int mPosition = -1;
@@ -110,10 +110,11 @@ public class EPubReaderFragment extends BaseFragment {
     private void initSeekbar() {
 
         mScrollSeekbar.setFragment(this);
-        if (mScrollSeekbar.getProgressDrawable() != null)
+        if (mScrollSeekbar.getProgressDrawable() != null) {
             mScrollSeekbar.getProgressDrawable()
                     .setColorFilter(ContextCompat.getColor(mContext, R.color.colorAccent),
                             PorterDuff.Mode.SRC_IN);
+        }
 
         mScrollSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

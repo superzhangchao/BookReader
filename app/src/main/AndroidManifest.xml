@@ -14,6 +14,7 @@
   ~ limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.justwayward.reader">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -94,7 +95,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.ReadCHMActivity">
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />

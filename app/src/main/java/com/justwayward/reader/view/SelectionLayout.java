@@ -15,9 +15,9 @@
  */
 package com.justwayward.reader.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.ListPopupWindow;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +37,9 @@ import com.yuyh.easyadapter.abslistview.EasyLVHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.core.content.ContextCompat;
 
 /**
  * @author yuyh.
@@ -146,6 +149,7 @@ public class SelectionLayout extends LinearLayout {
             mListPopupWindow.show();
         }
 
+        @SuppressLint("RestrictedApi")
         private void createPopupWindow() {
             mListPopupWindow = new ListPopupWindow(mContext);
             mAdapter = new SelAdapter(mContext, data);

@@ -17,7 +17,6 @@ package com.justwayward.reader.ui.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import com.justwayward.reader.R;
@@ -27,6 +26,8 @@ import com.yuyh.easyadapter.abslistview.EasyLVAdapter;
 import com.yuyh.easyadapter.abslistview.EasyLVHolder;
 
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * @author lfh.

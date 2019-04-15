@@ -1,7 +1,6 @@
 package com.yuyh.easyadapter.recyclerview;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 import com.yuyh.easyadapter.helper.DataHelper;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * https://github.com/smuyyh/EasyAdapter

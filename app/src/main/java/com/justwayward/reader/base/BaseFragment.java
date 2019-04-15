@@ -18,9 +18,7 @@ package com.justwayward.reader.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +27,9 @@ import com.justwayward.reader.ReaderApplication;
 import com.justwayward.reader.component.AppComponent;
 import com.justwayward.reader.view.loadding.CustomDialog;
 
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
@@ -91,7 +92,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     public FragmentActivity getSupportActivity() {
@@ -103,7 +103,7 @@ public abstract class BaseFragment extends Fragment {
                 .getApplicationContext()) : this.activity.getApplicationContext();
     }
 
-    protected LayoutInflater getLayoutInflater() {
+    protected LayoutInflater getLayoutInflaters() {
         return inflater;
     }
 
@@ -120,8 +120,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void hideDialog() {
-        if (dialog != null)
+        if (dialog != null) {
             dialog.hide();
+        }
     }
 
     public void showDialog() {

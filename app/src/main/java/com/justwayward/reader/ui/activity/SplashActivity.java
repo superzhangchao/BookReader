@@ -17,18 +17,18 @@ package com.justwayward.reader.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.justwayward.reader.R;
 
-import butterknife.Bind;
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends AppCompatActivity {
 
-    @Bind(R.id.tvSkip)
+    @BindView(R.id.tvSkip)
     TextView tvSkip;
 
     private boolean flag = false;
@@ -70,6 +70,5 @@ public class SplashActivity extends AppCompatActivity {
         super.onDestroy();
         flag = true;
         tvSkip.removeCallbacks(runnable);
-        ButterKnife.unbind(this);
     }
 }

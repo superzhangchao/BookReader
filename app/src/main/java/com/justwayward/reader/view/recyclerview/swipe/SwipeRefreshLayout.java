@@ -18,9 +18,7 @@ package com.justwayward.reader.view.recyclerview.swipe;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -33,6 +31,10 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
+
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SwipeRefreshLayout extends FrameLayout {
     // Maps to ProgressBar.Large style
@@ -272,6 +274,7 @@ public class SwipeRefreshLayout extends FrameLayout {
         requestDisallowInterceptTouchEvent(true);
     }
 
+    @Override
     protected int getChildDrawingOrder(int childCount, int i) {
         if (mCircleViewIndex < 0) {
             return i;

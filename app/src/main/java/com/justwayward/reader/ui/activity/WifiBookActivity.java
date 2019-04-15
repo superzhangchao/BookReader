@@ -18,7 +18,6 @@ package com.justwayward.reader.ui.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +30,8 @@ import com.justwayward.reader.utils.NetworkUtils;
 import com.justwayward.reader.wifitransfer.Defaults;
 import com.justwayward.reader.wifitransfer.ServerRunner;
 
-import butterknife.Bind;
+import androidx.appcompat.app.AlertDialog;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -43,12 +43,12 @@ public class WifiBookActivity extends BaseActivity {
         context.startActivity(new Intent(context, WifiBookActivity.class));
     }
 
-    @Bind(R.id.mTvWifiName)
+    @BindView(R.id.mTvWifiName)
     TextView mTvWifiName;
-    @Bind(R.id.mTvWifiIp)
+    @BindView(R.id.mTvWifiIp)
     TextView mTvWifiIp;
 
-    @Bind(R.id.tvRetry)
+    @BindView(R.id.tvRetry)
     TextView tvRetry;
 
     @Override

@@ -21,7 +21,9 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class DrawableCenterButton extends TextView {
+import androidx.appcompat.widget.AppCompatTextView;
+
+public class DrawableCenterButton extends AppCompatTextView {
 
     public DrawableCenterButton(Context context, AttributeSet attrs,
                                 int defStyle) {

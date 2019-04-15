@@ -32,9 +32,7 @@
 package com.justwayward.reader.view.recyclerview.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +47,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * A concrete BaseAdapter that is backed by an array of arbitrary
@@ -95,7 +97,9 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         @Override
         public int getSpanSize(int position) {
             if (headers.size() != 0) {
-                if (position < headers.size()) return mMaxCount;
+                if (position < headers.size()) {
+                    return mMaxCount;
+                }
             }
             if (footers.size() != 0) {
                 int i = position - headers.size() - mObjects.size();
@@ -165,32 +169,39 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
 
 
     public void stopMore() {
-        if (mEventDelegate == null)
+        if (mEventDelegate == null) {
             throw new NullPointerException("You should invoking setLoadMore() first");
+        }
         mEventDelegate.stopLoadMore();
     }
 
     public void pauseMore() {
-        if (mEventDelegate == null)
+        if (mEventDelegate == null) {
             throw new NullPointerException("You should invoking setLoadMore() first");
+        }
         mEventDelegate.pauseLoadMore();
     }
 
     public void resumeMore() {
-        if (mEventDelegate == null)
+        if (mEventDelegate == null) {
             throw new NullPointerException("You should invoking setLoadMore() first");
+        }
         mEventDelegate.resumeLoadMore();
     }
 
 
     public void addHeader(ItemView view) {
-        if (view == null) throw new NullPointerException("ItemView can't be null");
+        if (view == null) {
+            throw new NullPointerException("ItemView can't be null");
+        }
         headers.add(view);
         notifyItemInserted(footers.size() - 1);
     }
 
     public void addFooter(ItemView view) {
-        if (view == null) throw new NullPointerException("ItemView can't be null");
+        if (view == null) {
+            throw new NullPointerException("ItemView can't be null");
+        }
         footers.add(view);
         notifyItemInserted(headers.size() + getCount() + footers.size() - 1);
     }
@@ -296,14 +307,20 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param object The object to add at the end of the array.
      */
     public void add(T object) {
-        if (mEventDelegate != null) mEventDelegate.addData(object == null ? 0 : 1);
+        if (mEventDelegate != null) {
+            mEventDelegate.addData(object == null ? 0 : 1);
+        }
         if (object != null) {
             synchronized (mLock) {
                 mObjects.add(object);
             }
         }
-        if (mObserver != null) mObserver.onItemRangeInserted(getCount() + 1, 1);
-        if (mNotifyOnChange) notifyItemInserted(headers.size() + getCount() + 1);
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(getCount() + 1, 1);
+        }
+        if (mNotifyOnChange) {
+            notifyItemInserted(headers.size() + getCount() + 1);
+        }
         log("add notifyItemInserted " + (headers.size() + getCount() + 1));
     }
 
@@ -313,17 +330,21 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param collection The Collection to add at the end of the array.
      */
     public void addAll(Collection<? extends T> collection) {
-        if (mEventDelegate != null)
+        if (mEventDelegate != null) {
             mEventDelegate.addData(collection == null ? 0 : collection.size());
+        }
         if (collection != null && collection.size() != 0) {
             synchronized (mLock) {
                 mObjects.addAll(collection);
             }
         }
         int dataCount = collection == null ? 0 : collection.size();
-        if (mObserver != null) mObserver.onItemRangeInserted(getCount() - dataCount + 1, dataCount);
-        if (mNotifyOnChange)
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(getCount() - dataCount + 1, dataCount);
+        }
+        if (mNotifyOnChange) {
             notifyItemRangeInserted(headers.size() + getCount() - dataCount + 1, dataCount);
+        }
         log("addAll notifyItemRangeInserted " + (headers.size() + getCount() - dataCount + 1) + "," + (dataCount));
 
     }
@@ -334,16 +355,21 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param items The items to add at the end of the array.
      */
     public void addAll(T[] items) {
-        if (mEventDelegate != null) mEventDelegate.addData(items == null ? 0 : items.length);
+        if (mEventDelegate != null) {
+            mEventDelegate.addData(items == null ? 0 : items.length);
+        }
         if (items != null && items.length != 0) {
             synchronized (mLock) {
                 Collections.addAll(mObjects, items);
             }
         }
         int dataCount = items == null ? 0 : items.length;
-        if (mObserver != null) mObserver.onItemRangeInserted(getCount() - dataCount + 1, dataCount);
-        if (mNotifyOnChange)
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(getCount() - dataCount + 1, dataCount);
+        }
+        if (mNotifyOnChange) {
             notifyItemRangeInserted(headers.size() + getCount() - dataCount + 1, dataCount);
+        }
         log("addAll notifyItemRangeInserted " + ((headers.size() + getCount() - dataCount + 1) + "," + (dataCount)));
     }
 
@@ -357,8 +383,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         synchronized (mLock) {
             mObjects.add(index, object);
         }
-        if (mObserver != null) mObserver.onItemRangeInserted(index, 1);
-        if (mNotifyOnChange) notifyItemInserted(headers.size() + index + 1);
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(index, 1);
+        }
+        if (mNotifyOnChange) {
+            notifyItemInserted(headers.size() + index + 1);
+        }
         log("insert notifyItemRangeInserted " + (headers.size() + index + 1));
     }
 
@@ -373,8 +403,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             mObjects.addAll(index, Arrays.asList(object));
         }
         int dataCount = object == null ? 0 : object.length;
-        if (mObserver != null) mObserver.onItemRangeInserted(index + 1, dataCount);
-        if (mNotifyOnChange) notifyItemRangeInserted(headers.size() + index + 1, dataCount);
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(index + 1, dataCount);
+        }
+        if (mNotifyOnChange) {
+            notifyItemRangeInserted(headers.size() + index + 1, dataCount);
+        }
         log("insertAll notifyItemRangeInserted " + ((headers.size() + index + 1) + "," + (dataCount)));
     }
 
@@ -389,8 +423,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             mObjects.addAll(index, object);
         }
         int dataCount = object == null ? 0 : object.size();
-        if (mObserver != null) mObserver.onItemRangeInserted(index + 1, dataCount);
-        if (mNotifyOnChange) notifyItemRangeInserted(headers.size() + index + 1, dataCount);
+        if (mObserver != null) {
+            mObserver.onItemRangeInserted(index + 1, dataCount);
+        }
+        if (mNotifyOnChange) {
+            notifyItemRangeInserted(headers.size() + index + 1, dataCount);
+        }
         log("insertAll notifyItemRangeInserted " + ((headers.size() + index + 1) + "," + (dataCount)));
     }
 
@@ -403,8 +441,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         int position = mObjects.indexOf(object);
         synchronized (mLock) {
             if (mObjects.remove(object)) {
-                if (mObserver != null) mObserver.onItemRangeRemoved(position, 1);
-                if (mNotifyOnChange) notifyItemRemoved(headers.size() + position);
+                if (mObserver != null) {
+                    mObserver.onItemRangeRemoved(position, 1);
+                }
+                if (mNotifyOnChange) {
+                    notifyItemRemoved(headers.size() + position);
+                }
                 log("remove notifyItemRemoved " + (headers.size() + position));
             }
         }
@@ -419,8 +461,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         synchronized (mLock) {
             mObjects.remove(position);
         }
-        if (mObserver != null) mObserver.onItemRangeRemoved(position, 1);
-        if (mNotifyOnChange) notifyItemRemoved(headers.size() + position);
+        if (mObserver != null) {
+            mObserver.onItemRangeRemoved(position, 1);
+        }
+        if (mNotifyOnChange) {
+            notifyItemRemoved(headers.size() + position);
+        }
         log("remove notifyItemRemoved " + (headers.size() + position));
     }
 
@@ -430,12 +476,18 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      */
     public void clear() {
         int count = mObjects.size();
-        if (mEventDelegate != null) mEventDelegate.clear();
+        if (mEventDelegate != null) {
+            mEventDelegate.clear();
+        }
         synchronized (mLock) {
             mObjects.clear();
         }
-        if (mObserver != null) mObserver.onItemRangeRemoved(0, count);
-        if (mNotifyOnChange) notifyItemRangeRemoved(headers.size(), count);
+        if (mObserver != null) {
+            mObserver.onItemRangeRemoved(0, count);
+        }
+        if (mNotifyOnChange) {
+            notifyItemRangeRemoved(headers.size(), count);
+        }
         log("clear notifyItemRangeRemoved " + (headers.size()) + "," + (count));
     }
 
@@ -449,7 +501,9 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         synchronized (mLock) {
             Collections.sort(mObjects, comparator);
         }
-        if (mNotifyOnChange) notifyDataSetChanged();
+        if (mNotifyOnChange) {
+            notifyDataSetChanged();
+        }
     }
 
 
@@ -511,10 +565,11 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             if (headerView.hashCode() == viewType) {
                 View view = headerView.onCreateView(parent);
                 StaggeredGridLayoutManager.LayoutParams layoutParams;
-                if (view.getLayoutParams() != null)
+                if (view.getLayoutParams() != null) {
                     layoutParams = new StaggeredGridLayoutManager.LayoutParams(view.getLayoutParams());
-                else
+                } else {
                     layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
                 layoutParams.setFullSpan(true);
                 view.setLayoutParams(layoutParams);
                 return view;
@@ -524,10 +579,11 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             if (footerview.hashCode() == viewType) {
                 View view = footerview.onCreateView(parent);
                 StaggeredGridLayoutManager.LayoutParams layoutParams;
-                if (view.getLayoutParams() != null)
+                if (view.getLayoutParams() != null) {
                     layoutParams = new StaggeredGridLayoutManager.LayoutParams(view.getLayoutParams());
-                else
+                } else {
                     layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
                 layoutParams.setFullSpan(true);
                 view.setLayoutParams(layoutParams);
                 return view;
@@ -595,7 +651,9 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     @Override
     public final int getItemViewType(int position) {
         if (headers.size() != 0) {
-            if (position < headers.size()) return headers.get(position).hashCode();
+            if (position < headers.size()) {
+                return headers.get(position).hashCode();
+            }
         }
         if (footers.size() != 0) {
             /*
@@ -646,6 +704,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     /**
      * {@inheritDoc}
      */
+    @Override
     public long getItemId(int position) {
         return position;
     }

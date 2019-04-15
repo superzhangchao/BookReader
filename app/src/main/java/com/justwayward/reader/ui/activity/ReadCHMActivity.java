@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +26,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import butterknife.BindView;
 
 /**
  * @author yuyh.
@@ -43,9 +43,9 @@ public class ReadCHMActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     WebView mWebView;
 
     private String chmFileName;
@@ -185,7 +185,6 @@ public class ReadCHMActivity extends BaseActivity {
                 }
                 return false;
             }
-
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return shouldOverrideUrlLoading(view, request.getUrl().toString());
             }

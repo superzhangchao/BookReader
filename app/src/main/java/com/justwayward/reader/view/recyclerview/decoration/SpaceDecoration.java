@@ -16,15 +16,17 @@
 package com.justwayward.reader.view.recyclerview.decoration;
 
 import android.graphics.Rect;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+
 import android.view.Gravity;
 import android.view.View;
 
 import com.justwayward.reader.view.recyclerview.adapter.RecyclerArrayAdapter;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 
 public class SpaceDecoration extends RecyclerView.ItemDecoration {
@@ -85,17 +87,21 @@ public class SpaceDecoration extends RecyclerView.ItemDecoration {
          */
         if ((position>=headerCount&&position<parent.getAdapter().getItemCount()-footerCount)){
             int gravity;
-            if (spanIndex == 0&&spanCount>1)gravity = Gravity.LEFT;
-            else if (spanIndex == spanCount-1&&spanCount>1)gravity = Gravity.RIGHT;
-            else if (spanCount == 1)gravity = Gravity.FILL_HORIZONTAL;
-            else {
+            if (spanIndex == 0&&spanCount>1) {
+                gravity = Gravity.LEFT;
+            } else if (spanIndex == spanCount-1&&spanCount>1) {
+                gravity = Gravity.RIGHT;
+            } else if (spanCount == 1) {
+                gravity = Gravity.FILL_HORIZONTAL;
+            } else {
                 gravity = Gravity.CENTER;
             }
             if (orientation == OrientationHelper.VERTICAL){
                 switch (gravity){
                     case Gravity.LEFT:
-                        if (mPaddingEdgeSide)
+                        if (mPaddingEdgeSide) {
                             outRect.left = halfSpace*2;
+                        }
                         outRect.right = halfSpace;
                         break;
                     case Gravity.RIGHT:
@@ -114,13 +120,16 @@ public class SpaceDecoration extends RecyclerView.ItemDecoration {
                         outRect.right = halfSpace;
                         break;
                 }
-                if (position - headerCount < spanCount && mPaddingStart)outRect.top =  halfSpace*2;
+                if (position - headerCount < spanCount && mPaddingStart) {
+                    outRect.top =  halfSpace*2;
+                }
                 outRect.bottom = halfSpace*2;
             }else {
                 switch (gravity){
                     case Gravity.LEFT:
-                        if (mPaddingEdgeSide)
+                        if (mPaddingEdgeSide) {
                             outRect.bottom = halfSpace*2;
+                        }
                         outRect.top = halfSpace;
                         break;
                     case Gravity.RIGHT:
@@ -139,7 +148,9 @@ public class SpaceDecoration extends RecyclerView.ItemDecoration {
                         outRect.top = halfSpace;
                         break;
                 }
-                if (position - headerCount < spanCount  && mPaddingStart)outRect.left =  halfSpace*2;
+                if (position - headerCount < spanCount  && mPaddingStart) {
+                    outRect.left =  halfSpace*2;
+                }
                 outRect.right = halfSpace*2;
             }
         }else {//只有HeaderFooter进到这里

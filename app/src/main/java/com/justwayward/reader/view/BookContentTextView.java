@@ -15,8 +15,8 @@
  */
 package com.justwayward.reader.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -24,11 +24,14 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
+
 
 import com.justwayward.reader.R;
 import com.justwayward.reader.ui.activity.SearchActivity;
 import com.justwayward.reader.utils.LogUtils;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 
 /**
  * 识别文字中的书名
@@ -36,7 +39,7 @@ import com.justwayward.reader.utils.LogUtils;
  * @author yuyh.
  * @date 16/9/2.
  */
-public class BookContentTextView extends TextView {
+public class BookContentTextView extends AppCompatTextView {
 
     public BookContentTextView(Context context) {
         this(context, null);

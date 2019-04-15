@@ -15,8 +15,7 @@
  */
 package com.justwayward.reader.ui.activity;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 
 import com.justwayward.reader.R;
@@ -36,16 +35,18 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 
 /**
  * Created by lfh on 2016/8/30.
  */
 public class TopCategoryListActivity extends BaseActivity implements TopCategoryListContract.View {
 
-    @Bind(R.id.rvMaleCategory)
+    @BindView(R.id.rvMaleCategory)
     RecyclerView mRvMaleCategory;
-    @Bind(R.id.rvFemaleCategory)
+    @BindView(R.id.rvFemaleCategory)
     RecyclerView mRvFeMaleCategory;
 
     @Inject

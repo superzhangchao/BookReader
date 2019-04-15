@@ -112,7 +112,8 @@ public class SubOtherHomeRankActivity extends BaseRVActivity<BooksByCats.BooksBe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.detachView();
+        }
     }
 }

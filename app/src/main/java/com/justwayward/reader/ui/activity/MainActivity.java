@@ -26,12 +26,9 @@
  */
 package com.justwayward.reader.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.menu.MenuBuilder;
+
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -74,16 +71,21 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
 
 /**
  * https://github.com/JustWayward/BookReader
  */
 public class MainActivity extends BaseActivity implements MainContract.View, LoginPopupWindow.LoginTypeListener {
 
-    @Bind(R.id.indicator)
+    @BindView(R.id.indicator)
     RVPIndicator mIndicator;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
     private List<Fragment> mTabContents;
@@ -277,6 +279,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
      * @param menu
      * @return
      */
+    @SuppressLint("RestrictedApi")
     @Override
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {
         if (menu != null) {
@@ -308,7 +311,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
     public void onLogin(ImageView view, String type) {
         if (type.equals("QQ")) {
             if (!mTencent.isSessionValid()) {
-                if (loginListener == null) loginListener = new BaseUIListener();
+                if (loginListener == null) {
+                    loginListener = new BaseUIListener();
+                }
                 mTencent.login(this, "all", loginListener);
             }
         }

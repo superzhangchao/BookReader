@@ -10,11 +10,13 @@ import android.widget.SeekBar;
 
 import com.justwayward.reader.ui.fragment.EPubReaderFragment;
 
+import androidx.appcompat.widget.AppCompatSeekBar;
+
 /**
  * @author yuyh.
  * @date 2016/12/13.
  */
-public class VerticalSeekbar extends SeekBar {
+public class VerticalSeekbar extends AppCompatSeekBar {
 
     private EPubReaderFragment fragment;
 
@@ -192,6 +194,7 @@ public class VerticalSeekbar extends SeekBar {
         onSizeChanged(getWidth(), getHeight(), 0, 0);
     }
 
+    @Override
     public void setOnSeekBarChangeListener(OnSeekBarChangeListener l) {
         mOnSeekBarChangeListener = l;
         super.setOnSeekBarChangeListener(mOnSeekBarChangeListener);

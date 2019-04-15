@@ -17,9 +17,7 @@ package com.justwayward.reader.view.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorRes;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.AdapterDataObserver;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +38,9 @@ import com.justwayward.reader.view.recyclerview.swipe.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.ColorRes;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class EasyRecyclerView extends FrameLayout {
@@ -93,8 +94,9 @@ public class EasyRecyclerView extends FrameLayout {
     public EasyRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mContext = context;
-        if (attrs != null)
+        if (attrs != null) {
             initAttrs(attrs);
+        }
         initView();
     }
 
@@ -128,11 +130,17 @@ public class EasyRecyclerView extends FrameLayout {
         mPtrLayout.setEnabled(false);
 
         mProgressView = (ViewGroup) v.findViewById(R.id.progress);
-        if (mProgressId != 0) LayoutInflater.from(getContext()).inflate(mProgressId, mProgressView);
+        if (mProgressId != 0) {
+            LayoutInflater.from(getContext()).inflate(mProgressId, mProgressView);
+        }
         mEmptyView = (ViewGroup) v.findViewById(R.id.empty);
-        if (mEmptyId != 0) LayoutInflater.from(getContext()).inflate(mEmptyId, mEmptyView);
+        if (mEmptyId != 0) {
+            LayoutInflater.from(getContext()).inflate(mEmptyId, mEmptyView);
+        }
         mErrorView = (ViewGroup) v.findViewById(R.id.error);
-        if (mErrorId != 0) LayoutInflater.from(getContext()).inflate(mErrorId, mErrorView);
+        if (mErrorId != 0) {
+            LayoutInflater.from(getContext()).inflate(mErrorId, mErrorView);
+        }
         initRecyclerView(v);
     }
 
@@ -209,16 +217,18 @@ public class EasyRecyclerView extends FrameLayout {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
-                    if (mExternalOnScrollListener != null)
+                    if (mExternalOnScrollListener != null) {
                         mExternalOnScrollListener.onScrolled(recyclerView, dx, dy);
+                    }
 
                 }
 
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
-                    if (mExternalOnScrollListener != null)
+                    if (mExternalOnScrollListener != null) {
                         mExternalOnScrollListener.onScrollStateChanged(recyclerView, newState);
+                    }
 
                 }
             };
@@ -282,7 +292,7 @@ public class EasyRecyclerView extends FrameLayout {
     }
 
 
-    public static class EasyDataObserver extends AdapterDataObserver {
+    public static class EasyDataObserver extends RecyclerView.AdapterDataObserver {
         private EasyRecyclerView recyclerView;
 
         public EasyDataObserver(EasyRecyclerView recyclerView) {
@@ -486,10 +496,11 @@ public class EasyRecyclerView extends FrameLayout {
     }
 
     public void setTipViewText(String tip) {
-        if (!isTipViewVisible())
+        if (!isTipViewVisible()) {
             showTipView(tip);
-        else
+        } else {
             tipView.setText(tip);
+        }
     }
 
     public boolean isTipViewVisible() {
@@ -616,7 +627,9 @@ public class EasyRecyclerView extends FrameLayout {
      * @return inflated error view or null
      */
     public View getErrorView() {
-        if (mErrorView.getChildCount() > 0) return mErrorView.getChildAt(0);
+        if (mErrorView.getChildCount() > 0) {
+            return mErrorView.getChildAt(0);
+        }
         return null;
     }
 
@@ -624,7 +637,9 @@ public class EasyRecyclerView extends FrameLayout {
      * @return inflated progress view or null
      */
     public View getProgressView() {
-        if (mProgressView.getChildCount() > 0) return mProgressView.getChildAt(0);
+        if (mProgressView.getChildCount() > 0) {
+            return mProgressView.getChildAt(0);
+        }
         return null;
     }
 
@@ -633,7 +648,9 @@ public class EasyRecyclerView extends FrameLayout {
      * @return inflated empty view or null
      */
     public View getEmptyView() {
-        if (mEmptyView.getChildCount() > 0) return mEmptyView.getChildAt(0);
+        if (mEmptyView.getChildCount() > 0) {
+            return mEmptyView.getChildAt(0);
+        }
         return null;
     }
 

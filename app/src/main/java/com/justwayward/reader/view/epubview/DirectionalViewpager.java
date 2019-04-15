@@ -1,5 +1,6 @@
 package com.justwayward.reader.view.epubview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -12,22 +13,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.support.annotation.CallSuper;
-import android.support.annotation.DrawableRes;
-import android.support.v4.os.ParcelableCompat;
-import android.support.v4.os.ParcelableCompatCreatorCallbacks;
-import android.support.v4.view.AccessibilityDelegateCompat;
-import android.support.v4.view.KeyEventCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.WindowInsetsCompat;
-import android.support.v4.view.accessibility.AccessibilityEventCompat;
-import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
-import android.support.v4.view.accessibility.AccessibilityRecordCompat;
-import android.support.v4.widget.EdgeEffectCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.FocusFinder;
@@ -51,6 +36,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.DrawableRes;
+import androidx.core.os.ParcelableCompat;
+import androidx.core.os.ParcelableCompatCreatorCallbacks;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewConfigurationCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.accessibility.AccessibilityEventCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityRecordCompat;
+import androidx.core.widget.EdgeEffectCompat;
+import androidx.viewpager.widget.PagerAdapter;
 
 public class DirectionalViewpager extends ViewGroup {
     private static final String TAG = "ViewPager";
@@ -225,6 +227,7 @@ public class DirectionalViewpager extends ViewGroup {
     public static final int SCROLL_STATE_SETTLING = 2;
 
     private final Runnable mEndScrollRunnable = new Runnable() {
+        @Override
         public void run() {
             setScrollState(SCROLL_STATE_IDLE);
             populate();
@@ -371,7 +374,7 @@ public class DirectionalViewpager extends ViewGroup {
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(this,
-                new android.support.v4.view.OnApplyWindowInsetsListener() {
+                new androidx.core.view.OnApplyWindowInsetsListener() {
                     private final Rect mTempRect = new Rect();
 
                     @Override
@@ -843,7 +846,9 @@ public class DirectionalViewpager extends ViewGroup {
      */
     public void setPageMarginDrawable(Drawable d) {
         mMarginDrawable = d;
-        if (d != null) refreshDrawableState();
+        if (d != null) {
+            refreshDrawableState();
+        }
         setWillNotDraw(d == null);
         invalidate();
     }
@@ -1097,7 +1102,9 @@ public class DirectionalViewpager extends ViewGroup {
         // fling to a new position until we have finished the scroll to
         // that position, avoiding glitches from happening at that point.
         if (mPopulatePending) {
-            if (DEBUG) Log.i(TAG, "populate is pending, skipping for now...");
+            if (DEBUG) {
+                Log.i(TAG, "populate is pending, skipping for now...");
+            }
             sortChildDrawingOrder();
             return;
         }
@@ -1137,7 +1144,9 @@ public class DirectionalViewpager extends ViewGroup {
         for (curIndex = 0; curIndex < mItems.size(); curIndex++) {
             final ItemInfo ii = mItems.get(curIndex);
             if (ii.position >= mCurItem) {
-                if (ii.position == mCurItem) curItem = ii;
+                if (ii.position == mCurItem) {
+                    curItem = ii;
+                }
                 break;
             }
         }
@@ -1446,7 +1455,9 @@ public class DirectionalViewpager extends ViewGroup {
                 }
                 offset -= ii.widthFactor + marginOffset;
                 ii.offset = offset;
-                if (ii.position == 0) mFirstOffset = offset;
+                if (ii.position == 0) {
+                    mFirstOffset = offset;
+                }
             }
             offset = curItem.offset + curItem.widthFactor + marginOffset;
             pos = curItem.position + 1;
@@ -1528,7 +1539,9 @@ public class DirectionalViewpager extends ViewGroup {
                 }
                 offset -= ii.heightFactor + marginOffset;
                 ii.offset = offset;
-                if (ii.position == 0) mFirstOffset = offset;
+                if (ii.position == 0) {
+                    mFirstOffset = offset;
+                }
             }
             offset = curItem.offset + curItem.heightFactor + marginOffset;
             pos = curItem.position + 1;
@@ -1799,8 +1812,10 @@ public class DirectionalViewpager extends ViewGroup {
         for (int i = 0; i < size; ++i) {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                if (DEBUG) Log.v(TAG, "Measuring #" + i + " " + child
-                        + ": " + mChildWidthMeasureSpec);
+                if (DEBUG) {
+                    Log.v(TAG, "Measuring #" + i + " " + child
+                            + ": " + mChildWidthMeasureSpec);
+                }
 
                 final LayoutParams lp = (LayoutParams) child.getLayoutParams();
                 if (lp == null || !lp.isDecor) {
@@ -2022,9 +2037,11 @@ public class DirectionalViewpager extends ViewGroup {
                                     MeasureSpec.EXACTLY);
                             child.measure(widthSpec, heightSpec);
                         }
-                        if (DEBUG) Log.v(TAG, "Positioning #" + i + " " + child + " f=" + ii.object
-                                + ":" + childLeft + "," + childTop + " " + child.getMeasuredWidth()
-                                + "x" + child.getMeasuredHeight());
+                        if (DEBUG) {
+                            Log.v(TAG, "Positioning #" + i + " " + child + " f=" + ii.object
+                                    + ":" + childLeft + "," + childTop + " " + child.getMeasuredWidth()
+                                    + "x" + child.getMeasuredHeight());
+                        }
                         child.layout(childLeft, childTop,
                                 childLeft + child.getMeasuredWidth(),
                                 childTop + child.getMeasuredHeight());
@@ -2185,7 +2202,9 @@ public class DirectionalViewpager extends ViewGroup {
                     final View child = getChildAt(i);
                     final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
-                    if (lp.isDecor) continue;
+                    if (lp.isDecor) {
+                        continue;
+                    }
                     final float transformPos = (float) (child.getLeft() - scrollX) / getClientWidth();
                     mPageTransformer.transformPage(child, transformPos);
                 }
@@ -2244,7 +2263,9 @@ public class DirectionalViewpager extends ViewGroup {
                     final View child = getChildAt(i);
                     final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
-                    if (lp.isDecor) continue;
+                    if (lp.isDecor) {
+                        continue;
+                    }
 
                     final float transformPos = (float) (child.getTop() - scrollY) / getClientHeight();
                     mPageTransformer.transformPage(child, transformPos);
@@ -2373,7 +2394,9 @@ public class DirectionalViewpager extends ViewGroup {
         // Always take care of the touch gesture being complete.
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
             // Release the drag.
-            if (DEBUG) Log.v(TAG, "Intercept done!");
+            if (DEBUG) {
+                Log.v(TAG, "Intercept done!");
+            }
             if (isHorizontal()) {
                 resetTouch();
             } else {
@@ -2392,11 +2415,15 @@ public class DirectionalViewpager extends ViewGroup {
         // are dragging.
         if (action != MotionEvent.ACTION_DOWN) {
             if (mIsBeingDragged) {
-                if (DEBUG) Log.v(TAG, "Intercept returning true!");
+                if (DEBUG) {
+                    Log.v(TAG, "Intercept returning true!");
+                }
                 return true;
             }
             if (mIsUnableToDrag) {
-                if (DEBUG) Log.v(TAG, "Intercept returning false!");
+                if (DEBUG) {
+                    Log.v(TAG, "Intercept returning false!");
+                }
                 return false;
             }
         }
@@ -2485,9 +2512,11 @@ public class DirectionalViewpager extends ViewGroup {
                         mIsBeingDragged = false;
                     }
 
-                    if (DEBUG) Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
-                            + " mIsBeingDragged=" + mIsBeingDragged
-                            + "mIsUnableToDrag=" + mIsUnableToDrag);
+                    if (DEBUG) {
+                        Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
+                                + " mIsBeingDragged=" + mIsBeingDragged
+                                + "mIsUnableToDrag=" + mIsUnableToDrag);
+                    }
                     break;
                 }
 
@@ -3537,9 +3566,9 @@ public class DirectionalViewpager extends ViewGroup {
                     if (Build.VERSION.SDK_INT >= 11) {
                         // The focus finder had a bug handling FOCUS_FORWARD and FOCUS_BACKWARD
                         // before Android 3.0. Ignore the tab key on those devices.
-                        if (KeyEventCompat.hasNoModifiers(event)) {
+                        if (event.hasNoModifiers()) {
                             handled = arrowScroll(FOCUS_FORWARD);
-                        } else if (KeyEventCompat.hasModifiers(event, KeyEvent.META_SHIFT_ON)) {
+                        } else if (event.hasModifiers(KeyEvent.META_SHIFT_ON)) {
                             handled = arrowScroll(FOCUS_BACKWARD);
                         }
                     }
@@ -3800,6 +3829,7 @@ public class DirectionalViewpager extends ViewGroup {
         return false;
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // Dispatch scroll events from this ViewPager.
@@ -3845,6 +3875,7 @@ public class DirectionalViewpager extends ViewGroup {
 
     class MyAccessibilityDelegate extends AccessibilityDelegateCompat {
 
+        @SuppressLint("WrongConstant")
         @Override
         public void onInitializeAccessibilityEvent(View host, AccessibilityEvent event) {
             super.onInitializeAccessibilityEvent(host, event);

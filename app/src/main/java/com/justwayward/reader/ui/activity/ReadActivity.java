@@ -25,10 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.ListPopupWindow;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,7 +100,11 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.ListPopupWindow;
+import androidx.core.content.ContextCompat;
+import butterknife.BindView;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.functions.Action1;
@@ -113,66 +114,66 @@ import rx.functions.Action1;
  */
 public class ReadActivity extends BaseActivity implements BookReadContract.View {
 
-    @Bind(R.id.ivBack)
+    @BindView(R.id.ivBack)
     ImageView mIvBack;
-    @Bind(R.id.tvBookReadReading)
+    @BindView(R.id.tvBookReadReading)
     TextView mTvBookReadReading;
-    @Bind(R.id.tvBookReadCommunity)
+    @BindView(R.id.tvBookReadCommunity)
     TextView mTvBookReadCommunity;
-    @Bind(R.id.tvBookReadIntroduce)
+    @BindView(R.id.tvBookReadIntroduce)
     TextView mTvBookReadChangeSource;
-    @Bind(R.id.tvBookReadSource)
+    @BindView(R.id.tvBookReadSource)
     TextView mTvBookReadSource;
 
-    @Bind(R.id.flReadWidget)
+    @BindView(R.id.flReadWidget)
     FrameLayout flReadWidget;
 
-    @Bind(R.id.llBookReadTop)
+    @BindView(R.id.llBookReadTop)
     LinearLayout mLlBookReadTop;
-    @Bind(R.id.tvBookReadTocTitle)
+    @BindView(R.id.tvBookReadTocTitle)
     TextView mTvBookReadTocTitle;
-    @Bind(R.id.tvBookReadMode)
+    @BindView(R.id.tvBookReadMode)
     TextView mTvBookReadMode;
-    @Bind(R.id.tvBookReadSettings)
+    @BindView(R.id.tvBookReadSettings)
     TextView mTvBookReadSettings;
-    @Bind(R.id.tvBookReadDownload)
+    @BindView(R.id.tvBookReadDownload)
     TextView mTvBookReadDownload;
-    @Bind(R.id.tvBookReadToc)
+    @BindView(R.id.tvBookReadToc)
     TextView mTvBookReadToc;
-    @Bind(R.id.llBookReadBottom)
+    @BindView(R.id.llBookReadBottom)
     LinearLayout mLlBookReadBottom;
-    @Bind(R.id.rlBookReadRoot)
+    @BindView(R.id.rlBookReadRoot)
     RelativeLayout mRlBookReadRoot;
-    @Bind(R.id.tvDownloadProgress)
+    @BindView(R.id.tvDownloadProgress)
     TextView mTvDownloadProgress;
 
-    @Bind(R.id.rlReadAaSet)
+    @BindView(R.id.rlReadAaSet)
     LinearLayout rlReadAaSet;
-    @Bind(R.id.ivBrightnessMinus)
+    @BindView(R.id.ivBrightnessMinus)
     ImageView ivBrightnessMinus;
-    @Bind(R.id.seekbarLightness)
+    @BindView(R.id.seekbarLightness)
     SeekBar seekbarLightness;
-    @Bind(R.id.ivBrightnessPlus)
+    @BindView(R.id.ivBrightnessPlus)
     ImageView ivBrightnessPlus;
-    @Bind(R.id.tvFontsizeMinus)
+    @BindView(R.id.tvFontsizeMinus)
     TextView tvFontsizeMinus;
-    @Bind(R.id.seekbarFontSize)
+    @BindView(R.id.seekbarFontSize)
     SeekBar seekbarFontSize;
-    @Bind(R.id.tvFontsizePlus)
+    @BindView(R.id.tvFontsizePlus)
     TextView tvFontsizePlus;
 
-    @Bind(R.id.rlReadMark)
+    @BindView(R.id.rlReadMark)
     LinearLayout rlReadMark;
-    @Bind(R.id.tvAddMark)
+    @BindView(R.id.tvAddMark)
     TextView tvAddMark;
-    @Bind(R.id.lvMark)
+    @BindView(R.id.lvMark)
     ListView lvMark;
 
-    @Bind(R.id.cbVolume)
+    @BindView(R.id.cbVolume)
     CheckBox cbVolume;
-    @Bind(R.id.cbAutoBrightness)
+    @BindView(R.id.cbAutoBrightness)
     CheckBox cbAutoBrightness;
-    @Bind(R.id.gvTheme)
+    @BindView(R.id.gvTheme)
     GridView gvTheme;
 
     private View decodeView;
@@ -872,8 +873,9 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
     protected void onDestroy() {
         super.onDestroy();
 
-        if (mTtsPlayer.getPlayerState() == TTSCommonPlayer.PLAYER_STATE_PLAYING)
+        if (mTtsPlayer.getPlayerState() == TTSCommonPlayer.PLAYER_STATE_PLAYING) {
             mTtsPlayer.stop();
+        }
 
         EventManager.refreshCollectionIcon();
         EventManager.refreshCollectionList();
@@ -923,8 +925,9 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
         public void onLoadChapterFailure(int chapter) {
             LogUtils.i("onLoadChapterFailure:" + chapter);
             startRead = false;
-            if (CacheManager.getInstance().getChapterFile(bookId, chapter) == null)
+            if (CacheManager.getInstance().getChapterFile(bookId, chapter) == null) {
                 mPresenter.getChapterRead(mChapterList.get(chapter - 1).link, chapter);
+            }
         }
 
         @Override

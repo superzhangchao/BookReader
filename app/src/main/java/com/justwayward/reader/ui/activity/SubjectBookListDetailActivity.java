@@ -45,7 +45,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -56,15 +56,15 @@ public class SubjectBookListDetailActivity extends BaseRVActivity<BookListDetail
     private HeaderViewHolder headerViewHolder;
 
     static class HeaderViewHolder {
-        @Bind(R.id.tvBookListTitle)
+        @BindView(R.id.tvBookListTitle)
         TextView tvBookListTitle;
-        @Bind(R.id.tvBookListDesc)
+        @BindView(R.id.tvBookListDesc)
         TextView tvBookListDesc;
-        @Bind(R.id.ivAuthorAvatar)
+        @BindView(R.id.ivAuthorAvatar)
         ImageView ivAuthorAvatar;
-        @Bind(R.id.tvBookListAuthor)
+        @BindView(R.id.tvBookListAuthor)
         TextView tvBookListAuthor;
-        @Bind(R.id.btnShare)
+        @BindView(R.id.btnShare)
         TextView btnShare;
 
         public HeaderViewHolder(View view) {
@@ -215,7 +215,6 @@ public class SubjectBookListDetailActivity extends BaseRVActivity<BookListDetail
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(headerViewHolder);
         if (mPresenter != null) {
             mPresenter.detachView();
         }

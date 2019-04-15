@@ -18,11 +18,13 @@ package com.justwayward.reader.view.loadding;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.justwayward.reader.R;
+
+import androidx.core.content.ContextCompat;
 
 public class CustomDialog extends Dialog {
 

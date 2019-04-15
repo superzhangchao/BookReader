@@ -5,17 +5,20 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
+
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * @author yuyh.
  * @date 17/1/30.
  */
 
-public class LetterView extends TextView {
+public class LetterView extends AppCompatTextView {
 
     // 颜色画板集
     private static final int[] colors = {

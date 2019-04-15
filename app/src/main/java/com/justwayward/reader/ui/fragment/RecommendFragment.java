@@ -20,7 +20,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,16 +55,17 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.appcompat.app.AlertDialog;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recommend.RecommendBooks> implements RecommendContract.View, RecyclerArrayAdapter.OnItemLongClickListener {
 
-    @Bind(R.id.llBatchManagement)
+    @BindView(R.id.llBatchManagement)
     LinearLayout llBatchManagement;
-    @Bind(R.id.tvSelectAll)
+    @BindView(R.id.tvSelectAll)
     TextView tvSelectAll;
-    @Bind(R.id.tvDelete)
+    @BindView(R.id.tvDelete)
     TextView tvDelete;
 
     private boolean isSelectAll = false;
@@ -162,7 +162,9 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
     @Override
     public boolean onItemLongClick(int position) {
         //批量管理时，屏蔽长按事件
-        if (isVisible(llBatchManagement)) return false;
+        if (isVisible(llBatchManagement)) {
+            return false;
+        }
         showLongClickDialog(position);
         return false;
     }
@@ -247,7 +249,9 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
                 }
             };
         }
-        if (isTop) items[0] = getString(R.string.cancle_top);
+        if (isTop) {
+            items[0] = getString(R.string.cancle_top);
+        }
         new AlertDialog.Builder(activity)
                 .setTitle(mAdapter.getItem(position).title)
                 .setItems(items, listener)
@@ -313,7 +317,9 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
      * 隐藏批量管理布局并刷新页面
      */
     public void goneBatchManagementAndRefreshUI() {
-        if (mAdapter == null) return;
+        if (mAdapter == null) {
+            return;
+        }
         gone(llBatchManagement);
         for (Recommend.RecommendBooks bean :
                 mAdapter.getAllData()) {
@@ -348,7 +354,9 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
     public void delete() {
         List<Recommend.RecommendBooks> removeList = new ArrayList<>();
         for (Recommend.RecommendBooks bean : mAdapter.getAllData()) {
-            if (bean.isSeleted) removeList.add(bean);
+            if (bean.isSeleted) {
+                removeList.add(bean);
+            }
         }
         if (removeList.isEmpty()) {
             mRecyclerView.showTipViewAndDelayClose(activity.getString(R.string.has_not_selected_delete_book));

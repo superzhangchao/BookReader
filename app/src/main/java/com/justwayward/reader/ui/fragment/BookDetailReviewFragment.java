@@ -89,8 +89,9 @@ public class BookDetailReviewFragment extends BaseRVFragment<BookDetailReviewPre
             mAdapter.clear();
         }
         mAdapter.addAll(list);
-        if(list != null)
+        if(list != null) {
             start = start + list.size();
+        }
     }
 
     @Override

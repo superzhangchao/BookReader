@@ -24,13 +24,15 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 /**
  * 打字效果TextView
  *
  * @author yuyh.
  * @date 16/4/10.
  */
-public class TypeTextView extends TextView {
+public class TypeTextView extends AppCompatTextView {
     private Context mContext = null;
     private MediaPlayer mMediaPlayer = null;
     private String mShowTextString = null;

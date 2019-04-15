@@ -32,15 +32,15 @@ import android.widget.ProgressBar;
 
 import com.justwayward.reader.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProgressWebView extends LinearLayout {
 
-    @Bind(R.id.web_view)
+    @BindView(R.id.web_view)
     WebView mWebView;
 
-    @Bind(R.id.progress_bar)
+    @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
 
     private Context mContext;
